@@ -7,8 +7,6 @@
 
 > #### 基于 Python 和 Vue 的在线评测系统。 [Demo](https://qduoj.com)
 
-[English Document](README.md)
-
 ## 概览
 
 + 基于 Docker，真正一键部署
