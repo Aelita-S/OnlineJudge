@@ -5,6 +5,7 @@ __pycache__/
 *.so
 # Distribution / packaging
 .Python
+.vscode
 env/
 bin/
 build/
