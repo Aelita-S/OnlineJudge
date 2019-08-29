@@ -138,7 +138,7 @@ class TestCaseAPI(CSRFExemptAPIView, TestCaseZipProcessor):
             for test_case in name_list:
                 file.write(f"{test_case_dir}/{test_case}", test_case)
         response = StreamingHttpResponse(FileWrapper(open(file_name, "rb")),
-                                         content_type="application/octet-stream")
+                                        content_type="application/octet-stream")
 
         response["Content-Disposition"] = f"attachment; filename=problem_{problem.id}_test_cases.zip"
         response["Content-Length"] = os.path.getsize(file_name)
