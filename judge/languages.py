@@ -4,23 +4,23 @@ from problem.models import ProblemIOMode
 default_env = ["LANG=en_US.UTF-8", "LANGUAGE=en_US:en", "LC_ALL=en_US.UTF-8"]
 
 _c_lang_config = {
-    "template": """//PREPEND BEGIN
+    "template": """//声明部分开始（本注释及以下注释均不能删除）
 #include <stdio.h>
-//PREPEND END
+//声明部分结束
 
-//TEMPLATE BEGIN
+//前台显示模板部分，开始
 int add(int a, int b) {
   // Please fill this blank
   return ___________;
 }
-//TEMPLATE END
+//前台显示模板部分，结束
 
-//APPEND BEGIN
+//追加代码部分，开始（可用来写主函数）
 int main() {
   printf("%d", add(1, 2));
   return 0;
 }
-//APPEND END""",
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "main.c",
         "exe_name": "main",
@@ -52,23 +52,23 @@ _c_lang_spj_config = {
 }
 
 _cpp_lang_config = {
-    "template": """//PREPEND BEGIN
+    "template": """//声明部分开始
 #include <iostream>
-//PREPEND END
+//声明部分结束
 
-//TEMPLATE BEGIN
+//前台显示模板部分，开始
 int add(int a, int b) {
   // Please fill this blank
   return ___________;
 }
-//TEMPLATE END
+//前台显示模板部分，结束
 
-//APPEND BEGIN
+//追加代码部分，开始（可用来写主函数）
 int main() {
   std::cout << add(1, 2);
   return 0;
 }
-//APPEND END""",
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "main.cpp",
         "exe_name": "main",
@@ -100,14 +100,14 @@ _cpp_lang_spj_config = {
 }
 
 _java_lang_config = {
-    "template": """//PREPEND BEGIN
-//PREPEND END
+    "template": """//声明部分开始
+//声明部分结束
 
-//TEMPLATE BEGIN
-//TEMPLATE END
+//前台显示模板部分，开始
+//前台显示模板部分，结束
 
-//APPEND BEGIN
-//APPEND END""",
+//追加代码部分，开始（可用来写主函数）
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "Main.java",
         "exe_name": "Main",
@@ -127,14 +127,14 @@ _java_lang_config = {
 
 
 _py2_lang_config = {
-    "template": """//PREPEND BEGIN
-//PREPEND END
+    "template": """//声明部分开始
+//声明部分结束
 
-//TEMPLATE BEGIN
-//TEMPLATE END
+//前台显示模板部分，开始
+//前台显示模板部分，结束
 
-//APPEND BEGIN
-//APPEND END""",
+//追加代码部分，开始（可用来写主函数）
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "solution.py",
         "exe_name": "solution.pyc",
@@ -150,14 +150,14 @@ _py2_lang_config = {
     }
 }
 _py3_lang_config = {
-    "template": """//PREPEND BEGIN
-//PREPEND END
+    "template": """//声明部分开始
+//声明部分结束
 
-//TEMPLATE BEGIN
-//TEMPLATE END
+//前台显示模板部分，开始
+//前台显示模板部分，结束
 
-//APPEND BEGIN
-//APPEND END""",
+//追加代码部分，开始（可用来写主函数）
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "solution.py",
         "exe_name": "__pycache__/solution.cpython-35.pyc",

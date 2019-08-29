@@ -285,19 +285,20 @@ class AddProblemFromPublicProblemAPITest(ProblemCreateTestBase):
 
 class ParseProblemTemplateTest(APITestCase):
     def test_parse(self):
-        template_str = """
-//PREPEND BEGIN
+        self.end_ = """
+//声明部分开始
 aaa
-//PREPEND END
+//声明部分结束
 
-//TEMPLATE BEGIN
+//前台显示模板部分，开始
 bbb
-//TEMPLATE END
+//前台显示模板部分，结束
 
-//APPEND BEGIN
+//追加代码部分，开始（可用来写主函数）
 ccc
-//APPEND END
+//追加代码部分，结束（本注释及以上注释均不能删除）
 """
+        template_str = self.end_
 
         ret = parse_problem_template(template_str)
         self.assertEqual(ret["prepend"], "aaa\n")
@@ -306,16 +307,16 @@ ccc
 
     def test_parse1(self):
         template_str = """
-//PREPEND BEGIN
+//声明部分开始
 aaa
-//PREPEND END
+//声明部分结束
 
-//APPEND BEGIN
+//追加代码部分，开始（可用来写主函数）
 ccc
-//APPEND END
-//APPEND BEGIN
+//追加代码部分，结束（本注释及以上注释均不能删除）
+//追加代码部分，开始（可用来写主函数）
 ddd
-//APPEND END
+//追加代码部分，结束（本注释及以上注释均不能删除）
 """
 
         ret = parse_problem_template(template_str)
