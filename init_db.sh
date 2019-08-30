@@ -17,3 +17,5 @@ if [ "$1" = "--migrate" ]; then
     python manage.py migrate
     python manage.py inituser --username root --password rootroot --action create_super_admin
 fi
+
+; test shell
