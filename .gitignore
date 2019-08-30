@@ -82,8 +82,3 @@ http_locations.conf
 https_locations.conf
 
 venv/
-
-init_db.sh
-# 忽略数据库修改
-# init_db.sh
-dev_settings.py
