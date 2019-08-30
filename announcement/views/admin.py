@@ -18,11 +18,7 @@ class AnnouncementAdminAPI(APIView):
                                                    content=data["content"],
                                                    created_by=request.user,
                                                    visible=data["visible"],
-<<<<<<< HEAD
                                                    istop=data["istop"])
-=======
-						   istop=data["istop"])
->>>>>>> d4aeab3bb0f192410e824168410151dae697eb10
         return self.success(AnnouncementSerializer(announcement).data)
 
     @validate_serializer(EditAnnouncementSerializer)
