@@ -394,14 +394,18 @@ class ProfileProblemDisplayIDRefreshAPI(APIView):
         acm_problems = profile.acm_problems_status.get("problems", {})
         oi_problems = profile.oi_problems_status.get("problems", {})
         ids = list(acm_problems.keys()) + list(oi_problems.keys())
+        print(ids)
         if not ids:
             return self.success()
         display_ids = Problem.objects.filter(id__in=ids, visible=True).values_list("_id", flat=True)
+        print(display_ids)
         id_map = dict(zip(ids, display_ids))
-        for k, v in acm_problems.items():
-            v["_id"] = id_map[k]
-        for k, v in oi_problems.items():
-            v["_id"] = id_map[k]
+        print((id_map))
+        print(oi_problems.items())
+        for key, value in acm_problems.items():
+            value["_id"] = id_map[key]
+        # for key, value in oi_problems.items():
+        #     value["_id"] = id_map[key]
         profile.save(update_fields=["acm_problems_status", "oi_problems_status"])
         return self.success()
 
