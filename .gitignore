@@ -5,7 +5,10 @@ __pycache__/
 *.so
 # Distribution / packaging
 .Python
+<<<<<<< HEAD
 .vscode
+=======
+>>>>>>> test
 *.bat
 env/
 bin/
