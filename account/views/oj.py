@@ -380,6 +380,9 @@ class UserRankAPI(APIView):
             rule_type = ContestRuleType.ACM
         profiles = UserProfile.objects.exclude(user__problem_permission=ProblemPermission.ALL) \
             .select_related("user")
+        # profiles += UserProfile.objects.filter(user__admin_type=AdminType.REGULAR_USER, user__is_disabled=False) \
+        #     .select_related("user")
+
         if rule_type == ContestRuleType.ACM:
             profiles = profiles.filter(submission_number__gt=0).order_by("-accepted_number", "submission_number")
         else:
