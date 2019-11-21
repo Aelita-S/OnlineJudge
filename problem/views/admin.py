@@ -430,9 +430,15 @@ class ContestProblemAPI(ProblemBase):
         ensure_created_by(problem.contest, request.user)
         if Submission.objects.filter(problem=problem).exists():
             return self.error("Can't delete the problem as it has submissions")
+<<<<<<< HEAD
 #         d = os.path.join(settings.TEST_CASE_DIR, problem.test_case_id)
 #         if os.path.isdir(d):
 #             shutil.rmtree(d, ignore_errors=True)
+=======
+        # d = os.path.join(settings.TEST_CASE_DIR, problem.test_case_id)
+        # if os.path.isdir(d):
+        #    shutil.rmtree(d, ignore_errors=True)
+>>>>>>> upstream/master
         problem.delete()
         return self.success()
 
