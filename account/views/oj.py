@@ -394,8 +394,10 @@ class ProfileProblemDisplayIDRefreshAPI(APIView):
         acm_problems = profile.acm_problems_status.get("problems", {})
         oi_problems = profile.oi_problems_status.get("problems", {})
         ids = list(acm_problems.keys()) + list(oi_problems.keys())
+        print(ids)
         if not ids:
             return self.success()
+<<<<<<< HEAD
         display_ids = Problem.objects.filter(id__in=ids, visible=True).values_list("id", flat=True)
         print(ids)
         print(list(display_ids))
@@ -405,6 +407,17 @@ class ProfileProblemDisplayIDRefreshAPI(APIView):
                     acm_problems.pop(i)
                 except:
                     oi_problems.pop(i)
+=======
+        display_ids = Problem.objects.filter(id__in=ids, visible=True).values_list("_id", flat=True)
+        print(display_ids)
+        id_map = dict(zip(ids, display_ids))
+        print((id_map))
+        print(oi_problems.items())
+        for key, value in acm_problems.items():
+            value["_id"] = id_map[key]
+        # for key, value in oi_problems.items():
+        #     value["_id"] = id_map[key]
+>>>>>>> 73ce8ba68f4aa680960b2126ed030b23af58fe7a
         profile.save(update_fields=["acm_problems_status", "oi_problems_status"])
         return self.success()
 
