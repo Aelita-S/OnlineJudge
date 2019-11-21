@@ -57,6 +57,10 @@ class ProblemAPI(APIView):
         limit = request.GET.get("limit")
         if not limit:
             return self.error("Limit is needed")
+        
+        isReserved = request.GET.get("isReserved")
+        isReserved =  isReserved == "true"
+        
 
         problems = Problem.objects.select_related("created_by").filter(contest_id__isnull=True, visible=True)
         # 按照标签筛选
@@ -74,6 +78,9 @@ class ProblemAPI(APIView):
         if difficulty:
             problems = problems.filter(difficulty=difficulty)
         # 根据profile 为做过的题目添加标记
+        if  isReserved:
+            problems = problems.reverse()
+        print(isReserved)
         data = self.paginate_data(request, problems, ProblemSerializer)
         self._add_problem_status(request, data)
         return self.success(data)
