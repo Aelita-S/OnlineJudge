@@ -13,11 +13,7 @@ class AnnouncementAdminTest(APITestCase):
         self.assertSuccess(response)
 
     def create_announcement(self):
-<<<<<<< HEAD
         return self.client.post(self.url, data={"title": "test", "content": "test", "visible": True, "istop": False})
-=======
-        return self.client.post(self.url, data={"title": "test", "content": "test", "visible": True,"istop": False})
->>>>>>> d4aeab3bb0f192410e824168410151dae697eb10
 
     def test_create_announcement(self):
         resp = self.create_announcement()
@@ -32,11 +28,7 @@ class AnnouncementAdminTest(APITestCase):
         self.assertEqual(resp_data["title"], "ahaha")
         self.assertEqual(resp_data["content"], "test content")
         self.assertEqual(resp_data["visible"], False)
-<<<<<<< HEAD
         self.assertEqual(resp_data["istop"], False)
-=======
-	self.assertEqual(resp_data["istop"], False)
->>>>>>> d4aeab3bb0f192410e824168410151dae697eb10
 
     def test_delete_announcement(self):
         id = self.test_create_announcement().data["data"]["id"]
@@ -48,11 +40,7 @@ class AnnouncementAdminTest(APITestCase):
 class AnnouncementAPITest(APITestCase):
     def setUp(self):
         self.user = self.create_super_admin()
-<<<<<<< HEAD
         Announcement.objects.create(title="title", content="content", visible=True, istop=False, created_by=self.user)
-=======
-        Announcement.objects.create(title="title", content="content", visible=True, istop=False,  created_by=self.user)
->>>>>>> d4aeab3bb0f192410e824168410151dae697eb10
         self.url = self.reverse("announcement_api")
 
     def test_get_announcement_list(self):

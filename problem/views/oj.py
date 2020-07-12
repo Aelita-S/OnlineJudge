@@ -57,10 +57,10 @@ class ProblemAPI(APIView):
         limit = request.GET.get("limit")
         if not limit:
             return self.error("Limit is needed")
-        
+
         isReserved = request.GET.get("isReserved")
-        isReserved =  isReserved == "true"
-        
+        isReserved = isReserved == "true"
+
         sortByAC = request.GET.get("sortByAC")
         sortByAC = sortByAC == "true"
 
@@ -79,16 +79,20 @@ class ProblemAPI(APIView):
         difficulty = request.GET.get("difficulty")
         if difficulty:
             problems = problems.filter(difficulty=difficulty)
-        
+
         problems = list(problems)
         if sortByAC:
-            problems = sorted(problems, key=lambda problem:(problem.accepted_number/problem.submission_number))
-        if  isReserved:
+            # fix 排除除0错误
+            problems = sorted(problems,
+                              key=lambda p: (
+                                      p.accepted_number / p.submission_number) if p.submission_number != 0 else 1)
+        if isReserved:
             problems.reverse()
         data = self.paginate_data(request, problems, ProblemSerializer)
         # 根据profile 为做过的题目添加标记
         self._add_problem_status(request, data)
         return self.success(data)
+
 
 class ContestProblemAPI(APIView):
     def _add_problem_status(self, request, queryset_values):
