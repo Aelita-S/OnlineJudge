@@ -58,12 +58,6 @@ class ProblemAPI(APIView):
         if not limit:
             return self.error("Limit is needed")
 
-        isReserved = request.GET.get("isReserved")
-        isReserved = isReserved == "true"
-
-        sortByAC = request.GET.get("sortByAC")
-        sortByAC = sortByAC == "true"
-
         problems = Problem.objects.select_related("created_by").filter(contest_id__isnull=True, visible=True)
         # 按照标签筛选
         tag_text = request.GET.get("tag")
@@ -81,12 +75,12 @@ class ProblemAPI(APIView):
             problems = problems.filter(difficulty=difficulty)
 
         problems = list(problems)
-        if sortByAC:
-            # fix 排除除0错误
+        if request.GET.get("sortByAC") == "true":  # 根据问题正确率排列
             problems = sorted(problems,
-                              key=lambda p: (
-                                      p.accepted_number / p.submission_number) if p.submission_number != 0 else 1)
-        if isReserved:
+                              key=lambda problem: (problem.accepted_number / (1 if problem.submission_number == 0
+                                                                              else problem.submission_number)))
+            # 处理提交为0的情况
+        if request.GET.get("isReserved") == "true":  # 逆序排列
             problems.reverse()
         data = self.paginate_data(request, problems, ProblemSerializer)
         # 根据profile 为做过的题目添加标记
