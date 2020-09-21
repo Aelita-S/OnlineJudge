@@ -174,14 +174,14 @@ _py3_lang_config = {
 }
 
 _go_lang_config = {
-    "template": """//PREPEND BEGIN
-//PREPEND END
+    "template": """//声明部分开始
+//声明部分结束
 
-//TEMPLATE BEGIN
-//TEMPLATE END
+//前台显示模板部分，开始
+//前台显示模板部分，结束
 
-//APPEND BEGIN
-//APPEND END""",
+//追加代码部分，开始（可用来写主函数）
+//追加代码部分，结束（本注释及以上注释均不能删除）""",
     "compile": {
         "src_name": "main.go",
         "exe_name": "main",
