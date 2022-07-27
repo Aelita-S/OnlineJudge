@@ -5,10 +5,7 @@ __pycache__/
 *.so
 # Distribution / packaging
 .Python
-<<<<<<< HEAD
 .vscode
-=======
->>>>>>> test
 *.bat
 env/
 bin/
@@ -82,3 +79,5 @@ http_locations.conf
 https_locations.conf
 
 venv/
+#test docker-compose
+docker-compose.yml
